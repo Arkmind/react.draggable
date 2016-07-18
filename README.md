@@ -108,5 +108,7 @@ properties = {
 
 ___
 ***
+[![alt text][2]][1]
 
-![alt text](http://arkmind.pw/wp-content/themes/boardwalk/img/logo.png "Arkmind, to serve you")
+  [1]: http://www.arkmind.pw
+  [2]: http://arkmind.pw/wp-content/themes/boardwalk/img/logo.png ("Arkmind, to serve you")
