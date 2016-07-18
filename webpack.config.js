@@ -1,34 +1,29 @@
+var config = {
+   entry: './main.js',
 
-const path = require('path')
+   output: {
+      path:'./',
+      filename: 'index.js',
+   },
 
-module.exports = {
-  entry: "./src/index.js",
-  output: {
-      path: path.join(__dirname, 'www', 'js'),
-      filename: "bundle.js"
-  },
-  module: {
-    loaders: [
-      {
-          test: /\.js$/,
-          exclude: /(node_modules|\.tmp)/,
-          loader: 'babel-loader',
-          query: {
-              cacheDirectory: true,
-              presets: ['es2015', 'stage-0', 'react'],
-              // plugins: ['transform-runtime'],
-          }
-      },
-      {
-          test: /\.jsx$/,
-          exclude: /(node_modules|\.tmp)/,
-          loader: 'babel-loader',
-          query: {
-              cacheDirectory: true,
-              presets: ['es2015', 'stage-0', 'react'],
-              // plugins: ['transform-runtime'],
-          }
-      }
-    ]
-  }
+   devServer: {
+      inline: true,
+      port: 8080
+   },
+
+   module: {
+      loaders: [
+         {
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loader: 'babel',
+
+            query: {
+               presets: ['es2015', 'stage-0', 'react']
+            }
+         }
+      ]
+   }
 }
+
+module.exports = config;

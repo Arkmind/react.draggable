@@ -1,27 +1,23 @@
 {
-  "name": "react.draggable",
+  "name": "arksbot.creator",
   "version": "1.0.0",
-  "description": "Easy customizable draggable elements in React.js",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "webpack-dev": "webpack --watch --progress -d"
+    "start": "webpack-dev-server --hot"
   },
-  "author": "Arkmind <arkmind9000@gmail.com>",
+  "author": "Arkmind",
   "license": "ISC",
   "dependencies": {
-    "babel": "^6.3.26",
-    "babel-core": "^6.4.0",
-    "babel-preset-react": "^6.3.13",
-    "react": "^0.14.5",
-    "react-dom": "^0.14.5"
+    "install": "^0.8.1",
+    "npm": "^3.10.5",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-draggable": "^2.1.2",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.7.7",
-    "babel-loader": "^6.2.1",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-stage-0": "^6.3.13",
-    "webpack": "^1.13.0"
+    "babel-preset-stage-0": "^6.5.0"
   }
 }
