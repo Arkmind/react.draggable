@@ -1,4 +1,3 @@
-
 export default class Listener {
 
   constructor() {
@@ -7,13 +6,13 @@ export default class Listener {
     window.pack.listener = window.pack.listener || {}
     window.pack.listener.mouse = window.pack.listener.mouse || {}
 
-    window.addEventListener('mousemove', e => {
+    document.querySelector('.myReactObject').addEventListener('mousemove', e => {
 
       window.pack.mouse = {
         x : e.clientX,
-        y : e.clientY,
+        y : e.clientY
       }
-
+      
       if ( window.pack.listener.mouse.onMove ) {
         window.pack.listener.mouse.onMove( window.pack.mouse )
       }
