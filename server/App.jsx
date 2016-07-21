@@ -1,3 +1,4 @@
+import basicConfig from './config'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
@@ -6,26 +7,36 @@ class Draggable extends Component {
 
     super();
 
-    this.lastState = {}
+    this.resize = {
+      css : {
+        zIndex: 999,
+        position: "absolute",
+        bottom: 0,
+        right: 0,
+        backgroundColor: "#e95038",
+        height: 15,
+        width: 15
+      }
+    }
     this.position = {
-      x: 100,
-      y: 100
+      x: false,
+      y: false
     }
     this.state = {
-      css : {
-        height: 100,
-        width: 100,
-        margin: 50,
-        backgroundColor: '#000000',
-        position: 'absolute'
-      },
-      properties : {
-        type: ['draggable'],
-        limits: ['parent'],
-        linkStyles: ['solid'],
-        deplacements: 1
-      },
-      draggable: false
+      ...basicConfig.draggable
+    }
+
+  }
+
+  checkChanges() {
+
+    console.log('resize')
+
+    let element = ReactDOM.findDOMNode(this)
+    element.onresize = () => {
+
+      console.log(element.style)
+
     }
 
   }
@@ -54,6 +65,11 @@ class Draggable extends Component {
       offsetTop: ReactDOM.findDOMNode(this).offsetTop,
       offsetLeft: ReactDOM.findDOMNode(this).offsetLeft
     })
+
+    this.position = {
+      y: ReactDOM.findDOMNode(this).offsetTop,
+      x: ReactDOM.findDOMNode(this).offsetLeft
+    }
 
   }
 
@@ -138,12 +154,20 @@ class Draggable extends Component {
     document.body.className = "noselect";
     window.pack.listener.mouse.onMove = (mouse) => {
       this.position = {
-        x: Math.round((mouse.x - this.state.offsetLeft)/dep)*dep,
-        y: Math.round((mouse.y - this.state.offsetTop)/dep)*dep
+        x: this.position.x + mouse.mvtX,
+        y: this.position.y + mouse.mvtY
       }
 
-      if(this.position.x < 100) this.position.x = 50
-      if(this.position.y < 100) this.position.y = 50
+      console.log('Positions X Y :', this.position.x, this.position.y)
+
+      if(this.position.x < 10) {
+        this.position.x = 1
+        this.unMove.bind(this)
+      }
+      if(this.position.y < 10) {
+        this.position.y = 1
+        this.unMove.bind(this)
+      }
 
       this.setState({
         css : {
@@ -155,6 +179,10 @@ class Draggable extends Component {
       })
 
     }
+  }
+
+  didResize() {
+    console.log('resize')
   }
 
   unMove() {
@@ -176,11 +204,14 @@ class Draggable extends Component {
     )
 
     return (
-      <div
-        onMouseDown={this.move.bind(this)}
-        onMouseUp={this.unMove.bind(this)}
-        style={this.state.css}>
-        { this.props.component && this.props.component }
+      <div style={this.state.css}>
+        <div
+          style={this.state.insetCSS}
+          onMouseDown={this.move.bind(this)}
+          onMouseUp={this.unMove.bind(this)}
+        >
+          { this.props.component && this.props.component }
+        </div>
       </div>
     );
   }
@@ -215,7 +246,7 @@ class DashBoard extends Component {
           }
         })
 
-        
+
         return layout
       }) }
       </div>

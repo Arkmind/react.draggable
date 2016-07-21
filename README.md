@@ -60,9 +60,10 @@ ReactDOM.render(
 > Values list
 
 ```javascript
+component = component
 id = string // id of the component
 css = { // An object that can have css ! (Seriously I don't think I need to explain this shit)
-  height: [100,
+  height: 100,
   width: 100,
   backgroundColor: '#000000'
 }

@@ -5,13 +5,11 @@ import Listener from './server/listener';
 
 new Listener()
 
-class Form extends Component {
+class Message extends Component {
 
   render() {
     return (
-      <div onClick={ () => this.props.onClickA && this.props.onClickA() } style={ { color: 'white' } }>
-        hello
-      </div>
+      <div style={{ color: "#FFF", padding: 10 }}>{this.props.message}</div>
     );
   }
 }
@@ -24,10 +22,9 @@ ReactDOM.render(
       drags={[
 
         <Draggable
-          component={<Form
-            onClickA={ () => { alert('yolo') }}
-            />
-          }
+          component={<Message
+            message="Draggable item : Draggable, resizable, selectable"
+          />}
           css={{
             height: 200,
           }}
@@ -39,10 +36,9 @@ ReactDOM.render(
         />,
 
         <Draggable
-          component={<Form
-            onClickA={ () => { alert('yolo') }}
-            />
-          }
+          component={<Message
+            message="Draggable item : Draggable"
+          />}
           css={{
             height: 200,
           }}
@@ -55,7 +51,6 @@ ReactDOM.render(
       ]}
 
       change={( config ) => {
-        console.log(config)
       }}
 
     />
