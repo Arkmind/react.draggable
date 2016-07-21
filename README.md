@@ -31,19 +31,28 @@ import ReactDOM from 'react-dom'
 import { Draggable }, { DashBoard } from 'react.draggable'
 import AnAnotherDiv from './App.jsx'
 
-ReactDOM.render(<Draggable
-                  id = "drag1"
-                  css = {}
-                  properties = {
-                    type : ['draggable', 'resizable', 'selectable'],
-                    limits : ['parent', 'body', 'divID'],
-                    link : ['drag2', 'drag3'],
-                    linkStyles : ['outline', 'dotted', 'solid', 'double'],
-                    deplacements : 20
-                  }
-            >
-              <AnAnotherDiv/>
-            </Draggable>);
+ReactDOM.render(
+  <DashBoard
+
+    drags={[
+      <Draggable
+        component={<AnAnotherDiv/>}
+        id = "drag1"
+        css = {}
+        properties = {
+          type : ['draggable', 'resizable', 'selectable'],
+          limits : ['parent', 'body', 'divID'],
+          link : ['drag2', 'drag3'],
+          linkStyles : ['outline', 'dotted', 'solid', 'double'],
+          deplacements : 20
+        }
+      />
+    ]}
+
+    change={(config) => {
+      //... this is the onChange function (executed at every state changes)
+    }}
+);
 ```
 
 ### Documentation
